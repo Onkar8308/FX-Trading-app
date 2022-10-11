@@ -1,0 +1,18 @@
+.card{
+    background-color: aquamarine;
+    size: 25px;
+    /* margin: 350px 350px; */
+    margin: 15px 30px;
+    margin-bottom: 16px;
+    border: 50px;
+    border-radius: 1cm;
+    opacity: .70;
+}
+ .btn-group{
+align-items: center;
+ margin-left: 40%;  
+}
+table{
+    border:3px
+    ;
+}

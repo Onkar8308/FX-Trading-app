@@ -1,0 +1,93 @@
+<app-header></app-header>
+<div class="card text-center col-4" style="margin-left: 25%; width: 50%;"  >
+   <div class="card" >
+     <h2>To perform the action please click on the below buttons</h2> <br>
+<div class="btn-group" role="group" aria-label="Basic example" style="margin-left:25%"> 
+     <button (click)="bookingform()" class="">book trade</button>
+      <button (click)="printingtrade()" class="">print trade</button>
+      <button routerLink="/home" class="">exit trade</button>
+      </div>
+   </div>
+   <form  *ngIf="show" #f="ngForm" (ngSubmit)="onSubmit(f)" >
+        <!--First name-->
+        <mat-form-field appearance="outline" class="myclass" [color]="'accent'">
+          <label>customer Name</label>
+          <input  matInput type="text" placeholder="Enter the customer Name"
+            #name="ngModel" [(ngModel)]="load.name"
+            name="name"        
+            required  >
+            <mat-error *ngIf="name.touched && !name.valid"> ** Please Enter the  customer Name</mat-error>
+        </mat-form-field> 
+         <!--First name-->
+
+
+        <!--currrency pair-->
+        <mat-form-field appearance="outline" class="myclass" [color]="'accent'">
+          <label>Currency pair</label>
+          <input matInput type="text" placeholder="Enter the Curreny Name"
+            #currencypair="ngModel" [(ngModel)]="load.currencypair" 
+            name="ccy"        
+            required >
+            <mat-error *ngIf="currencypair.touched && !currencypair.valid"> ** Please Enter the  Currency Name</mat-error>
+        </mat-form-field> 
+         <!--currency pair-->
+   
+
+        <!-- amount -->
+        <mat-form-field appearance="outline" class="myclass" [color]="'accent'">
+          <label>Amount</label>
+          <input matInput type="number" min=0 placeholder="Enter the Amount"
+                    #amount="ngModel" [(ngModel)]="load.amount" 
+                    name="amount"
+                    required>
+            <mat-error *ngIf="amount.touched && !amount.valid"> ** Please Enter the  amount</mat-error>
+        </mat-form-field><br>
+        <!-- amount -->
+        
+
+        <!-- booking confirmation -->
+        <mat-form-field appearance="outline" class="myclass" [color]="'accent'">
+          <label>booking confirmation</label>
+          <input matInput type="text"  placeholder="Enter your confirmation (yes or no)"
+                    #bookingConfirmation="ngModel" [(ngModel)]="load.bookingConfirmation"  
+                    name="confirmation"
+                    required>
+            <mat-error *ngIf="bookingConfirmation.touched && !bookingConfirmation.valid"> ** Please Enter the yes or no</mat-error>
+        </mat-form-field><br>
+        <!-- booking confirmation -->
+
+
+        <!-- getrate -->
+          <label>get rate</label><br>
+          <input type="radio" value="yes" #getrate="ngModel" [(ngModel)]="load.getrate" name="getrate" >yes
+          <input type="radio" value="NO" #norate="ngModel" [(ngModel)]="load.getrate" name="getrate">NO
+        <br>
+          <!--getrate-->
+
+         <button mat-raised-button color="primary" [disabled]="!f.valid">Submit</button>
+
+      </form>
+     
+      <table class="table table-bordered table-hover" *ngIf="tableshow">
+        <thead>
+          <th>id</th>
+          <th>name</th>
+          <th>currencypair</th>
+          <th>amount</th>
+          <th>rate</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of EmpData ;index as i">
+            <td> {{i+1}} </td>
+            <td> {{item.name}} </td>
+            <td>{{item.currencypair}}  </td>
+            <td> {{item.amount}} </td>
+            <td> {{item.getrate}} </td>
+          </tr>
+        </tbody>
+      </table>
+     
+   <div class="card" *ngIf="popupmessage"  >
+   <h2>trade for {{load.currencypair}}  has been booked...</h2>
+    </div>
+  </div>

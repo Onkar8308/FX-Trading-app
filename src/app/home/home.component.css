@@ -1,0 +1,10 @@
+button{
+    color: black;
+}
+.test {
+    display: flex;
+    flex-direction: row;
+  }
+.card{
+    margin-right: 200px;
+}
